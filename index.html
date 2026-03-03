@@ -535,7 +535,7 @@ function updateDots(){
 function showDailyResult(won){
   const b=document.getElementById('rb');
   b.classList.add('show',won?'win':'lose');
-  document.getElementById('rt').textContent=won?'⚔ ÂMES LIBÉRÉES ⚔':'💀 BANKAI ÉCHOUÉ';
+  document.getElementById('rt').textContent=won?'⚔ BIEN JOUÉ ⚔':'💀 BANKAI ÉCHOUÉ';
   document.getElementById('rm').textContent='Le personnage était : '+tgt.n;
   document.getElementById('rd').textContent=won
     ?'Bravo ! '+tgt.n+' identifié en '+dGuesses.length+' essai'+(dGuesses.length>1?'s':'')+'.'
