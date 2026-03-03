@@ -11,18 +11,18 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,#0a1530 0%,transparent 70%);pointer-events:none;z-index:0}
-header{width:100%;max-width:960px;padding:32px 20px 16px;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;z-index:1}
+header{width:100%;max-width:1100px;padding:32px 20px 16px;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;z-index:1}
 .logo-row{display:flex;align-items:center;gap:16px}
 .logo-icon{font-size:36px;animation:pg 3s ease-in-out infinite}
 @keyframes pg{0%,100%{filter:drop-shadow(0 0 10px #4a7fd466)}50%{filter:drop-shadow(0 0 24px #7aabffaa)}}
 h1{font-family:'Cinzel',serif;font-weight:900;font-size:clamp(22px,5vw,38px);letter-spacing:.08em;background:linear-gradient(135deg,#4a7fd4,#7aabff,#4a7fd4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .subtitle{font-family:'Crimson Pro',serif;font-style:italic;color:var(--text-dim);font-size:14px;letter-spacing:.15em}
-.divider{width:100%;max-width:700px;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--accent),var(--border),transparent);margin:12px 0;position:relative}
+.divider{width:100%;max-width:900px;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--accent),var(--border),transparent);margin:12px 0;position:relative}
 .divider::after{content:'☯';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--bg);padding:0 10px;color:var(--accent);font-size:14px}
-main{width:100%;max-width:960px;padding:0 16px 40px;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:16px}
+main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:16px}
 .timer-bar{display:flex;gap:24px;align-items:center;font-family:'Cinzel',serif;font-size:13px;color:var(--text-dim);letter-spacing:.1em}
 .timer-bar span{color:var(--accent2)}
-.input-area{width:100%;max-width:620px;display:flex;gap:10px}
+.input-area{width:100%;max-width:680px;display:flex;gap:10px}
 .autocomplete-wrap{position:relative;flex:1}
 .guess-input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:'Cinzel',serif;font-size:14px;padding:12px 18px;outline:none;border-radius:2px;letter-spacing:.05em;transition:border-color .2s}
 .guess-input:focus{border-color:var(--accent)}
@@ -36,17 +36,17 @@ main{width:100%;max-width:960px;padding:0 16px 40px;position:relative;z-index:1;
 .autocomplete-item:hover,.autocomplete-item.selected{background:var(--surface);color:var(--accent2)}
 .autocomplete-item .gb{font-size:10px;color:var(--text-dim);margin-left:auto;white-space:nowrap}
 .guesses-container{width:100%;overflow-x:auto}
-.guesses-header{display:grid;grid-template-columns:200px repeat(5,1fr);gap:4px;margin-bottom:6px;padding:0 2px}
-.guesses-header div{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--text-dim);text-align:center;text-transform:uppercase;padding:4px 0;border-bottom:1px solid var(--border)}
+.guesses-header{display:grid;grid-template-columns:160px repeat(9,1fr);gap:3px;margin-bottom:6px;padding:0 2px;min-width:900px}
+.guesses-header div{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.08em;color:var(--text-dim);text-align:center;text-transform:uppercase;padding:4px 2px;border-bottom:1px solid var(--border)}
 .guesses-header div:first-child{text-align:left;padding-left:8px}
-.guess-row{display:grid;grid-template-columns:200px repeat(5,1fr);gap:4px;margin-bottom:4px;animation:si .35s cubic-bezier(.2,.8,.3,1) both}
+.guess-row{display:grid;grid-template-columns:160px repeat(9,1fr);gap:3px;margin-bottom:3px;animation:si .35s cubic-bezier(.2,.8,.3,1) both;min-width:900px}
 @keyframes si{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.guess-cell{background:var(--surface2);border:1px solid var(--border);padding:10px 8px;text-align:center;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.04em;border-radius:2px;min-height:48px;display:flex;align-items:center;justify-content:center}
-.guess-cell:first-child{text-align:left;justify-content:flex-start;padding-left:10px;font-size:12px}
+.guess-cell{background:var(--surface2);border:1px solid var(--border);padding:8px 4px;text-align:center;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.03em;border-radius:2px;min-height:44px;display:flex;align-items:center;justify-content:center;line-height:1.3}
+.guess-cell:first-child{text-align:left;justify-content:flex-start;padding-left:8px;font-size:11px}
 .guess-cell.correct{background:var(--correct);border-color:var(--cb);color:#6ee89a}
 .guess-cell.wrong{background:var(--wrong);border-color:var(--wb);color:#e87070}
 .guess-cell.close{background:var(--close);border-color:var(--lb);color:#e8c870}
-.result-banner{width:100%;max-width:620px;padding:20px 28px;border:1px solid var(--accent);background:var(--surface2);border-radius:2px;text-align:center;display:none;flex-direction:column;gap:10px;animation:fu .5s ease both}
+.result-banner{width:100%;max-width:680px;padding:20px 28px;border:1px solid var(--accent);background:var(--surface2);border-radius:2px;text-align:center;display:none;flex-direction:column;gap:10px;animation:fu .5s ease both}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .result-banner.show{display:flex}
 .result-banner.win{border-color:var(--cb);background:#061a0e}
@@ -67,7 +67,7 @@ main{width:100%;max-width:960px;padding:0 16px 40px;position:relative;z-index:1;
 .share-btn:hover{background:var(--accent);color:#fff}
 .help-toggle{font-family:'Cinzel',serif;font-size:11px;color:var(--text-dim);letter-spacing:.1em;cursor:pointer;text-decoration:underline;text-underline-offset:3px;background:none;border:none;transition:color .2s}
 .help-toggle:hover{color:var(--accent2)}
-.help-panel{max-width:620px;width:100%;background:var(--surface2);border:1px solid var(--border);padding:16px 20px;border-radius:2px;display:none;flex-direction:column;gap:8px;font-size:13px;line-height:1.7;color:var(--text-dim)}
+.help-panel{max-width:680px;width:100%;background:var(--surface2);border:1px solid var(--border);padding:16px 20px;border-radius:2px;display:none;flex-direction:column;gap:8px;font-size:13px;line-height:1.7;color:var(--text-dim)}
 .help-panel.open{display:flex}
 .help-panel strong{color:var(--accent2);font-family:'Cinzel',serif;font-size:12px}
 .legend-row{display:flex;gap:10px;align-items:center}
@@ -78,7 +78,11 @@ main{width:100%;max-width:960px;padding:0 16px 40px;position:relative;z-index:1;
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-@media(max-width:640px){.guesses-header,.guess-row{grid-template-columns:140px repeat(5,1fr)}.guess-cell{font-size:9px;padding:6px 3px;min-height:40px}.guess-cell:first-child{font-size:10px}h1{font-size:22px}}
+@media(max-width:700px){
+  .guesses-header,.guess-row{grid-template-columns:110px repeat(9,1fr)}
+  .guess-cell{font-size:8px;padding:5px 2px;min-height:36px}
+  .guess-cell:first-child{font-size:9px}
+}
 </style>
 </head>
 <body>
@@ -88,7 +92,7 @@ main{width:100%;max-width:960px;padding:0 16px 40px;position:relative;z-index:1;
     <h1>BLEACH GUESSR</h1>
     <div class="logo-icon">🌙</div>
   </div>
-  <div class="subtitle">Bleach · Édition Quotidienne</div>
+  <div class="subtitle">Bleach · Édition Quotidienne · Mode Hardcore</div>
   <div class="divider"></div>
 </header>
 <main>
@@ -101,9 +105,9 @@ main{width:100%;max-width:960px;padding:0 16px 40px;position:relative;z-index:1;
     <strong>RÈGLES</strong>
     Devinez le personnage Bleach du jour en max <strong>8 essais</strong>.
     <div class="legend-row"><div class="lb2 g"></div><span>Correct — même valeur que la cible</span></div>
-    <div class="legend-row"><div class="lb2 y"></div><span>Proche — dangerosité à ±1</span></div>
+    <div class="legend-row"><div class="lb2 y"></div><span>Proche — dangerosité ±1 · même mois d'anniversaire · victoires ±2</span></div>
     <div class="legend-row"><div class="lb2 r"></div><span>Incorrect — valeur différente</span></div>
-    <strong>COLONNES :</strong> Race · Sexe · Arc d'intro · Affiliation · Dangerosité (★/5)
+    <strong>COLONNES :</strong> Race · Sexe · Arc · Affiliation · Danger · Statut · Cheveux · Anniversaire · Combats (V/D)
   </div>
   <div class="input-area">
     <div class="autocomplete-wrap">
@@ -114,7 +118,16 @@ main{width:100%;max-width:960px;padding:0 16px 40px;position:relative;z-index:1;
   </div>
   <div class="guesses-container">
     <div class="guesses-header">
-      <div>PERSONNAGE</div><div>RACE</div><div>SEXE</div><div>ARC</div><div>AFFILIATION</div><div>DANGER</div>
+      <div>PERSONNAGE</div>
+      <div>RACE</div>
+      <div>SEXE</div>
+      <div>ARC</div>
+      <div>AFFILIATION</div>
+      <div>DANGER</div>
+      <div>STATUT</div>
+      <div>CHEVEUX</div>
+      <div>ANNIV.</div>
+      <div>COMBATS</div>
     </div>
     <div id="gr"></div>
   </div>
@@ -144,22 +157,29 @@ function todayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+
 let tgt=getTodayChar(),guesses=[],over=false,sel=-1;
 
 function loadState(){
-  try{const s=JSON.parse(localStorage.getItem('bleachg25'));
+  try{const s=JSON.parse(localStorage.getItem('bleachg25v2'));
   if(!s||s.date!==todayStr())return;
   guesses=s.guesses||[];over=s.over||false;
   guesses.forEach(renderRow);updateDots();
   if(over)showResult(s.won);}catch(e){}
 }
-function saveState(won){try{localStorage.setItem('bleachg25',JSON.stringify({date:todayStr(),guesses,over,won}));}catch(e){}}
+function saveState(won){try{localStorage.setItem('bleachg25v2',JSON.stringify({date:todayStr(),guesses,over,won}));}catch(e){}}
 
 function cmp(m){
   const dd=Math.abs(m.d-tgt.d);
+  const dw=Math.abs(m.w-tgt.w);
+  const sameBday=m.bday===tgt.bday;
+  const sameMois=m.bday!=='??/??' && tgt.bday!=='??/??' && m.bday.slice(3)===tgt.bday.slice(3);
   return[
-    {v:m.r,  st:m.r===tgt.r?'correct':'wrong'},
-    {v:m.sx, st:m.sx===tgt.sx?'correct':'wrong'},
-    {v:m.arc,st:m.arc===tgt.arc?'correct':'wrong'},
-    {v:m.af, st:m.af===tgt.af?'correct':'wrong'},
+    {v:m.r,   st:m.r===tgt.r?'correct':'wrong'},
+    {v:m.sx,  st:m.sx===tgt.sx?'correct':'wrong'},
+    {v:m.arc, st:m.arc===tgt.arc?'correct':'wrong'},
+    {v:m.af,  st:m.af===tgt.af?'correct':'wrong'},
     {v:'★'.repeat(m.d)+'☆'.repeat(5-m.d), st:m.d===tgt.d?'correct':dd===1?'close':'wrong', a:m.d<tgt.d?'▲':m.d>tgt.d?'▼':''},
+    {v:m.st,  st:m.st===tgt.st?'correct':'wrong'},
+    {v:m.hc,  st:m.hc===tgt.hc?'correct':'wrong'},
+    {v:m.bday,st:sameBday?'correct':sameMois?'close':'wrong'},
+    {v:m.w+'V / '+m.l+'D', st:m.w===tgt.w&&m.l===tgt.l?'correct':dw<=2?'close':'wrong', a:m.w<tgt.w?'▲':m.w>tgt.w?'▼':''},
   ];
 }
 
@@ -167,7 +187,11 @@ function renderRow(data){
   const {m,f}=data;
   const row=document.createElement('div');row.className='guess-row';
   const nc=document.createElement('div');nc.className='guess-cell '+(m.n===tgt.n?'correct':'wrong');nc.textContent=m.n;row.appendChild(nc);
-  f.forEach(x=>{const c=document.createElement('div');c.className='guess-cell '+x.st;c.innerHTML=x.v+(x.a?'<span style="font-size:9px;margin-left:3px"> '+x.a+'</span>':'');row.appendChild(c);});
+  f.forEach(x=>{
+    const c=document.createElement('div');c.className='guess-cell '+x.st;
+    c.innerHTML=x.v+(x.a?'<span style="font-size:8px;margin-left:2px">'+x.a+'</span>':'');
+    row.appendChild(c);
+  });
   document.getElementById('gr').prepend(row);
 }
 
@@ -182,8 +206,9 @@ function showResult(won){
   const b=document.getElementById('rb');b.classList.add('show',won?'win':'lose');
   document.getElementById('rt').textContent=won?'⚔ ÂMES LIBÉRÉES ⚔':'💀 BANKAI ÉCHOUÉ';
   document.getElementById('rm').textContent='Le personnage était : '+tgt.n;
-  document.getElementById('rd').textContent=won?'Bravo ! '+tgt.n+' identifié en '+guesses.length+' essai'+(guesses.length>1?'s':'')+'.'
-    :tgt.n+' | '+tgt.r+' | '+tgt.af+' | Arc : '+tgt.arc+' | Danger: '+'★'.repeat(tgt.d);
+  document.getElementById('rd').textContent=won
+    ?'Bravo ! '+tgt.n+' identifié en '+guesses.length+' essai'+(guesses.length>1?'s':'')+'.'
+    :tgt.n+' · '+tgt.r+' · '+tgt.st+' · Cheveux : '+tgt.hc+' · '+tgt.w+'V/'+tgt.l+'D · Anniv. '+tgt.bday;
   document.getElementById('gb').disabled=true;document.getElementById('gi').disabled=true;
   tick();setInterval(tick,1000);
 }
@@ -212,7 +237,7 @@ function onInput(){
   const done=new Set(guesses.map(x=>x.m.n));
   CHARS.filter(m=>m.n.toLowerCase().includes(v)&&!done.has(m.n)).slice(0,8).forEach(m=>{
     const i=document.createElement('div');i.className='autocomplete-item';
-    i.innerHTML=m.n+'<span class="gb">'+m.r+' · '+m.af+'</span>';
+    i.innerHTML=m.n+'<span class="gb">'+m.r+' · '+m.st+'</span>';
     i.onclick=()=>{document.getElementById('gi').value=m.n;l.innerHTML='';submit();};l.appendChild(i);});
 }
 
@@ -228,8 +253,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('.autocomplete-wrap')
 function toggleHelp(){document.getElementById('helpPanel').classList.toggle('open');}
 
 function share(){
-  let t='Bleach Guessr '+todayStr()+'\n'+guesses.length+'/'+MAX+' essais\n\n';
-  guesses.forEach(x=>{const w=x.m.n===tgt.n;t+=x.f.map(f=>f.st==='correct'?'🟩':f.st==='close'?'🟨':'🟥').join('')+(w?' ⚔':'')+'\n';});
+  let t='Bleach Guessr HC '+todayStr()+'\n'+guesses.length+'/'+MAX+' essais\n\n';
+  guesses.forEach(x=>{const w=x.m.n===tgt.n;t+=(w?'⚔ ':'')+'['+x.m.n+']\n';t+=x.f.map(f=>f.st==='correct'?'🟩':f.st==='close'?'🟨':'🟥').join('')+'\n';});
   t+='\nhttps://VOTRE-USERNAME.github.io/bleach-guessr';
   try{navigator.clipboard.writeText(t);}catch(e){}
   const b=document.querySelector('.share-btn');b.textContent='✓ COPIÉ !';setTimeout(()=>b.textContent='📋 COPIER LE RÉSULTAT',2000);
