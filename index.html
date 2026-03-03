@@ -39,16 +39,20 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
 .survival-mode .timer-bar span{color:var(--survival-accent2)}
 
 /* SURVIVAL SCORE BAR */
-.surv-bar{display:none;width:100%;max-width:680px;background:var(--surface2);border:1px solid #2d1a4a;border-radius:4px;padding:14px 20px;gap:16px;align-items:center;justify-content:space-between}
+.surv-bar{display:none;width:100%;max-width:780px;background:var(--surface2);border:1px solid #2d1a4a;border-radius:4px;padding:14px 20px;gap:16px;align-items:center;justify-content:space-between}
 .surv-bar.visible{display:flex}
 .surv-stat{display:flex;flex-direction:column;align-items:center;gap:2px}
 .surv-stat-val{font-family:'Cinzel',serif;font-size:22px;font-weight:900;color:var(--survival-accent2)}
 .surv-stat-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase}
-.surv-lives{display:flex;gap:5px}
-.surv-heart{font-size:18px;transition:all .3s;filter:drop-shadow(0 0 4px #a855f7aa)}
-.surv-heart.dead{filter:none;opacity:.2}
 .surv-streak{font-family:'Cinzel',serif;font-size:13px;color:var(--survival-accent2)}
 .surv-streak span{color:var(--survival-accent);font-size:18px;font-weight:900}
+
+/* SURVIVAL ATTEMPTS */
+.surv-attempts{display:flex;flex-direction:column;align-items:center;gap:4px}
+.surv-attempts-dots{display:flex;gap:5px}
+.surv-attempt-dot{width:9px;height:9px;border-radius:50%;background:var(--surface);border:1px solid #4a2a6a;transition:all .3s}
+.surv-attempt-dot.used{background:#6b21a8;border-color:var(--survival-accent)}
+.surv-attempt-dot.win{background:#27a35a;border-color:#4fdf8a}
 
 /* SURVIVAL FLASH */
 .surv-flash{width:100%;max-width:680px;padding:10px 20px;border-radius:2px;text-align:center;font-family:'Cinzel',serif;font-size:14px;letter-spacing:.08em;display:none;animation:flashIn .3s ease}
@@ -56,7 +60,6 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
 .surv-flash.show{display:block}
 .surv-flash.correct-flash{background:#061a0e;border:1px solid var(--cb);color:#6ee89a}
 .surv-flash.wrong-flash{background:#1a0606;border:1px solid var(--wb);color:#e87070}
-.surv-flash.skip-flash{background:#1a1a06;border:1px solid var(--lb);color:#e8c870}
 
 /* INPUT */
 .input-area{width:100%;max-width:680px;display:flex;gap:10px}
@@ -70,11 +73,6 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
 .guess-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .survival-mode .guess-btn{background:linear-gradient(135deg,#6b21a8,#a855f7)}
 .survival-mode .guess-btn:hover{background:linear-gradient(135deg,#a855f7,#d8b4fe)}
-
-/* SKIP BUTTON (survival only) */
-.skip-btn{background:transparent;border:1px solid var(--lb);color:#e8c870;font-family:'Cinzel',serif;font-size:11px;padding:8px 14px;cursor:pointer;border-radius:2px;letter-spacing:.1em;transition:all .2s;text-transform:uppercase;white-space:nowrap}
-.skip-btn:hover{background:#1a1a06}
-.skip-btn:disabled{opacity:.3;cursor:not-allowed}
 
 .autocomplete-list{position:absolute;top:100%;left:0;right:0;background:var(--surface2);border:1px solid var(--border);border-top:none;max-height:220px;overflow-y:auto;z-index:100;border-radius:0 0 2px 2px}
 .autocomplete-list:empty{display:none}
@@ -122,7 +120,7 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
 .surv-end.show{display:flex}
 .surv-end-title{font-family:'Cinzel',serif;font-size:26px;font-weight:900;letter-spacing:.1em;color:var(--survival-accent2)}
 .surv-end-score{font-family:'Cinzel',serif;font-size:48px;font-weight:900;color:var(--survival-accent2);line-height:1;filter:drop-shadow(0 0 20px var(--survival-accent))}
-.surv-end-sub{font-style:italic;color:var(--text-dim);font-size:14px;line-height:1.7}
+.surv-end-sub{font-style:italic;color:var(--text-dim);font-size:14px;line-height:1.7;white-space:pre-line}
 .surv-end-stats{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
 .surv-end-stat{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 16px;background:#0d0618;border:1px solid #2d1a4a;border-radius:4px}
 .surv-end-stat strong{font-family:'Cinzel',serif;font-size:20px;color:var(--survival-accent2)}
@@ -145,10 +143,6 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
 .lb2.y{background:var(--close);border-color:var(--lb)}
 .lb2.r{background:var(--wrong);border-color:var(--wb)}
 
-/* SURVIVAL target card */
-.surv-target-hint{font-family:'Cinzel',serif;font-size:12px;color:var(--text-dim);letter-spacing:.08em;text-align:center}
-.surv-target-hint em{color:var(--survival-accent2);font-style:normal}
-
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
@@ -157,11 +151,8 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
   .guess-cell{font-size:8px;padding:5px 2px;min-height:36px}
   .guess-cell:first-child{font-size:9px}
   .surv-end-stats{gap:10px}
+  .surv-bar{flex-wrap:wrap;gap:10px}
 }
-
-/* Pulse animation for correct survival */
-@keyframes pulse-green{0%{box-shadow:0 0 0 0 #27a35a66}70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
-.pulse-correct{animation:pulse-green .6s ease}
 </style>
 </head>
 <body>
@@ -193,12 +184,12 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
       <div class="surv-stat-lbl">Score</div>
     </div>
     <div class="surv-stat">
-      <div class="surv-lives" id="survLives">
-        <span class="surv-heart">💜</span>
-        <span class="surv-heart">💜</span>
-        <span class="surv-heart">💜</span>
-      </div>
-      <div class="surv-stat-lbl">Vies</div>
+      <div class="surv-stat-val" id="survKills">0</div>
+      <div class="surv-stat-lbl">Trouvés</div>
+    </div>
+    <div class="surv-attempts">
+      <div class="surv-attempts-dots" id="survDots"></div>
+      <div class="surv-stat-lbl">Essais</div>
     </div>
     <div class="surv-stat">
       <div class="surv-streak" id="survStreak">🔥 <span>0</span></div>
@@ -217,10 +208,10 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
       Devinez le personnage Bleach du jour en max <strong>8 essais</strong>.
     </div>
     <div id="helpSurv" style="display:none">
-      Devinez des personnages aléatoires à la chaîne. <strong>3 vies</strong>, mort subite.<br>
-      Chaque personnage est limité à <strong>4 essais</strong> — raté = -1 vie.<br>
-      Bonus de score selon la série de bons personnages consécutifs !<br>
-      <strong>PASSER</strong> coûte également une vie.
+      Devinez des personnages aléatoires à la chaîne — <strong>8 essais par personnage</strong>.<br>
+      Si tu ne trouves pas en 8 essais → <strong>☠ Game Over !</strong><br>
+      Le but : enchaîner la plus longue série de personnages trouvés.<br>
+      Bonus de score selon la vitesse et ta série de trouvailles consécutives !
     </div>
     <div class="legend-row"><div class="lb2 g"></div><span>Correct — même valeur que la cible</span></div>
     <div class="legend-row"><div class="lb2 y"></div><span>Proche — dangerosité ±1 · même mois · victoires ±2</span></div>
@@ -237,7 +228,6 @@ main{width:100%;max-width:1100px;padding:0 16px 40px;position:relative;z-index:1
       <input class="guess-input" id="gi" type="text" placeholder="Entrez un personnage..." autocomplete="off" oninput="onInput()" onkeydown="onKD(event)"/>
       <div class="autocomplete-list" id="al"></div>
     </div>
-    <button class="skip-btn" id="skipBtn" style="display:none" onclick="survSkip()">PASSER 💔</button>
     <button class="guess-btn" id="gb" onclick="submit()">DEVINER</button>
   </div>
 
@@ -388,7 +378,7 @@ const CHARS=[
 ];
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
-const MAX_DAILY=8, MAX_SURV=4, SURV_LIVES=3;
+const MAX_DAILY=8, MAX_SURV=8;
 
 function seededShuffle(arr,seed){
   const a=arr.slice();let s=seed>>>0;
@@ -399,7 +389,7 @@ function getDayNumber(){const start=new Date('2025-01-01T00:00:00');const today=
 function getTodayChar(){const day=getDayNumber();return seededShuffle(CHARS,day^0xBEA6)[day%CHARS.length];}
 function todayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 
-function cmp(m, tgt){
+function cmp(m,tgt){
   const dd=Math.abs(m.d-tgt.d);
   const dw=Math.abs(m.w-tgt.w);
   const sameBday=m.bday===tgt.bday;
@@ -417,7 +407,7 @@ function cmp(m, tgt){
   ];
 }
 
-function renderRow(m, f, tgt){
+function renderRow(m,f,tgt){
   const row=document.createElement('div');row.className='guess-row';
   const nc=document.createElement('div');nc.className='guess-cell '+(m.n===tgt.n?'correct':'wrong');nc.textContent=m.n;row.appendChild(nc);
   f.forEach(x=>{
@@ -431,13 +421,13 @@ function renderRow(m, f, tgt){
 function clearGrid(){document.getElementById('gr').innerHTML='';}
 
 // ── MODE STATE ─────────────────────────────────────────────────────────────────
-let mode='daily'; // 'daily' | 'survival'
+let mode='daily';
 
 // DAILY
 let tgt=getTodayChar(), dGuesses=[], dOver=false, dSel=-1;
 
 // SURVIVAL
-let sLives=SURV_LIVES, sScore=0, sStreak=0, sBestStreak=0, sKills=0;
+let sScore=0, sStreak=0, sBestStreak=0, sKills=0;
 let sQueue=[], sQueueIdx=0, sCurrent=null, sGuesses=[], sSel=-1, sOver=false;
 let sBestRecord=0;
 
@@ -448,7 +438,6 @@ function switchMode(m){
   const btnD=document.getElementById('btnDaily'),btnS=document.getElementById('btnSurv');
   const dailyBar=document.getElementById('dailyBar'),survBar=document.getElementById('survBar');
   const rb=document.getElementById('rb'),survEnd=document.getElementById('survEnd');
-  const skipBtn=document.getElementById('skipBtn');
   const survFlash=document.getElementById('survFlash');
   const helpDaily=document.getElementById('helpDaily'),helpSurv=document.getElementById('helpSurv');
   const helpTitle=document.getElementById('helpTitle');
@@ -457,10 +446,9 @@ function switchMode(m){
 
   if(m==='daily'){
     body.classList.remove('survival-mode');
-    subTitle.textContent='Bleach · Édition Quotidienne · Mode Hardcore';
+    subTitle.textContent='Bleach · Édition Quotidienne';
     btnD.classList.add('active');btnS.classList.remove('active');
     dailyBar.style.display='';survBar.classList.remove('visible');
-    skipBtn.style.display='none';
     helpTitle.textContent='RÈGLES — MODE QUOTIDIEN';
     helpDaily.style.display='';helpSurv.style.display='none';
     survEnd.classList.remove('show');
@@ -477,7 +465,6 @@ function switchMode(m){
     subTitle.textContent='Bleach · Survie · Mort Subite';
     btnD.classList.remove('active');btnS.classList.add('active');
     survBar.classList.add('visible');dailyBar.style.display='none';
-    skipBtn.style.display='';
     helpTitle.textContent='RÈGLES — MODE SURVIE';
     helpDaily.style.display='none';helpSurv.style.display='';
     rb.classList.remove('show');
@@ -551,7 +538,7 @@ function tick(){
 }
 
 function share(){
-  let t='Bleach Guessr HC '+todayStr()+'\n'+dGuesses.length+'/'+MAX_DAILY+' essais\n\n';
+  let t='Bleach Guessr '+todayStr()+'\n'+dGuesses.length+'/'+MAX_DAILY+' essais\n\n';
   dGuesses.forEach(x=>{const w=x.m.n===tgt.n;t+=(w?'⚔ ':'')+'['+x.m.n+']\n';t+=x.f.map(f=>f.st==='correct'?'🟩':f.st==='close'?'🟨':'🟥').join('')+'\n';});
   try{navigator.clipboard.writeText(t);}catch(e){}
   const b=document.querySelector('.share-btn');b.textContent='✓ COPIÉ !';setTimeout(()=>b.textContent='📋 COPIER LE RÉSULTAT',2000);
@@ -566,14 +553,13 @@ function saveSurvRecord(){
 }
 
 function survRandQueue(){
-  // Fisher-Yates with Date.now() seed
   const arr=CHARS.slice();
   for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
   return arr;
 }
 
 function survInit(){
-  sLives=SURV_LIVES; sScore=0; sStreak=0; sBestStreak=0; sKills=0;
+  sScore=0; sStreak=0; sBestStreak=0; sKills=0;
   sQueue=survRandQueue(); sQueueIdx=0;
   sOver=false;
   document.getElementById('survEnd').classList.remove('show');
@@ -588,7 +574,6 @@ function survNext(){
   document.getElementById('survFlash').classList.remove('show');
   document.getElementById('gi').disabled=false;
   document.getElementById('gb').disabled=false;
-  document.getElementById('skipBtn').disabled=false;
   focusInput();
   updateSurvUI();
 }
@@ -599,40 +584,43 @@ function survRestart(){
 
 function updateSurvUI(){
   document.getElementById('survScore').textContent=sScore;
+  document.getElementById('survKills').textContent=sKills;
   document.getElementById('survStreak').innerHTML='🔥 <span>'+sStreak+'</span>';
   document.getElementById('survBest').textContent=sBestRecord;
-  // lives
-  const hearts=document.querySelectorAll('.surv-heart');
-  hearts.forEach((h,i)=>{h.classList.toggle('dead',i>=sLives);});
+  // dots for current attempt
+  const dotsEl=document.getElementById('survDots');
+  dotsEl.innerHTML='';
+  for(let i=0;i<MAX_SURV;i++){
+    const d=document.createElement('div');
+    d.className='surv-attempt-dot';
+    if(i<sGuesses.length){
+      const wasCorrect=sGuesses[i]&&sGuesses[i].m.n===sCurrent.n;
+      d.classList.add(wasCorrect?'win':'used');
+    }
+    dotsEl.appendChild(d);
+  }
 }
 
-function survShowFlash(type, msg){
+function survShowFlash(type,msg){
   const f=document.getElementById('survFlash');
   f.className='surv-flash show '+type;
   f.textContent=msg;
   setTimeout(()=>f.classList.remove('show'),2200);
 }
 
-function survLoseLife(revealName){
-  sLives--;
-  sStreak=0;
-  if(sLives<=0){
-    sOver=true;
-    if(sScore>sBestRecord){sBestRecord=sScore;saveSurvRecord();}
-    survShowFlash('wrong-flash','☠ '+revealName+' — Partie terminée !');
-    setTimeout(()=>{showSurvEnd();},1200);
-  } else {
-    survShowFlash('wrong-flash','💔 -1 vie ! C\'était '+revealName);
-    updateSurvUI();
-    setTimeout(()=>survNext(),1800);
-  }
+function survGameOver(revealName){
+  sOver=true;
+  if(sScore>sBestRecord){sBestRecord=sScore;saveSurvRecord();}
+  survShowFlash('wrong-flash','☠ '+revealName+' — Game Over !');
+  document.getElementById('gi').disabled=true;
+  document.getElementById('gb').disabled=true;
+  setTimeout(()=>showSurvEnd(),1400);
 }
 
 function survCorrect(guessCount){
   sKills++;
   sStreak++;
   if(sStreak>sBestStreak) sBestStreak=sStreak;
-  // score: 10 base + bonus streak + bonus speed
   const streakBonus=Math.min(sStreak-1,5)*2;
   const speedBonus=Math.max(0,(MAX_SURV-guessCount))*3;
   const points=10+streakBonus+speedBonus;
@@ -642,24 +630,8 @@ function survCorrect(guessCount){
   survShowFlash('correct-flash','✓ '+sCurrent.n+' · +'+points+' pts'+streakMsg);
   document.getElementById('gi').disabled=true;
   document.getElementById('gb').disabled=true;
-  document.getElementById('skipBtn').disabled=true;
   updateSurvUI();
   setTimeout(()=>survNext(),1800);
-}
-
-function survSkip(){
-  if(sOver)return;
-  survShowFlash('skip-flash','⏭ Passé : '+sCurrent.n+' — 💔 -1 vie');
-  sLives--;
-  sStreak=0;
-  if(sLives<=0){
-    sOver=true;
-    if(sScore>sBestRecord){sBestRecord=sScore;saveSurvRecord();}
-    setTimeout(()=>{showSurvEnd();},1200);
-  } else {
-    updateSurvUI();
-    setTimeout(()=>survNext(),1800);
-  }
 }
 
 function showSurvEnd(){
@@ -667,13 +639,12 @@ function showSurvEnd(){
   document.getElementById('survEnd').classList.add('show');
   document.getElementById('survEndScore').textContent=sScore;
   document.getElementById('survEndSub').innerHTML=
-    'La série s\'est terminée avec <em>'+sKills+'</em> personnage'+(sKills>1?'s':'')+'.\nMeilleure série : <em>'+sBestStreak+'</em> consécutifs.';
+    'Série terminée avec <em>'+sKills+'</em> personnage'+(sKills>1?'s':'')+' trouvés.\nMeilleure série : <em>'+sBestStreak+'</em> consécutifs.';
   document.getElementById('survEndKills').textContent=sKills;
   document.getElementById('survEndBestStreak').textContent=sBestStreak;
   document.getElementById('survEndRecord').textContent=sBestRecord;
   document.getElementById('gi').disabled=true;
   document.getElementById('gb').disabled=true;
-  document.getElementById('skipBtn').disabled=true;
   updateSurvUI();
 }
 
@@ -713,11 +684,12 @@ function submitSurv(){
   if(!m){inp.style.borderColor='#c0392b';inp.placeholder='Personnage introuvable...';setTimeout(()=>{inp.style.borderColor='';inp.placeholder='Entrez un personnage...';},1500);return;}
   if(sGuesses.find(x=>x.m.n===m.n)){inp.style.borderColor='#d4a017';inp.placeholder='Déjà essayé !';setTimeout(()=>{inp.style.borderColor='';inp.placeholder='Entrez un personnage...';},1500);return;}
   const f=cmp(m,sCurrent);const data={m,f};sGuesses.push(data);renderRow(m,f,sCurrent);
-  inp.value='';document.getElementById('al').innerHTML='';
+  updateSurvUI();
   if(m.n===sCurrent.n){
     survCorrect(sGuesses.length);
   } else if(sGuesses.length>=MAX_SURV){
-    survLoseLife(sCurrent.n);
+    // 8 essais échoués → game over
+    survGameOver(sCurrent.n);
   }
 }
 
