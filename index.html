@@ -704,7 +704,7 @@ function onInput(){
   CHARS.filter(m=>m.n.toLowerCase().includes(v)&&!done.has(m.n)).slice(0,8).forEach(m=>{
     const i=document.createElement('div');i.className='autocomplete-item';
     i.innerHTML=m.n+'<span class="gb2">'+m.r+' · '+m.st+'</span>';
-    i.onclick=()=>{document.getElementById('gi').value=m.n;l.innerHTML='';submit();};l.appendChild(i);
+    i.onclick=()=>{const gi=document.getElementById('gi');gi.value=m.n;l.innerHTML='';submit();gi.value='';};l.appendChild(i);
   });
 }
 
