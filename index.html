@@ -138,7 +138,7 @@ function seededShuffle(arr,seed){
   return a;
 }
 function getDayNumber(){const start=new Date('2025-01-01T00:00:00');const today=new Date();today.setHours(0,0,0,0);return Math.floor((today-start)/86400000);}
-function getTodayChar(){const day=getDayNumber();return seededShuffle(CHARS,day^0xBEACH)[day%CHARS.length];}
+function getTodayChar(){const day=getDayNumber();return seededShuffle(CHARS,day^0xBEA6)[day%CHARS.length];}
 function todayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
 
 let tgt=getTodayChar(),guesses=[],over=false,sel=-1;
