@@ -156,14 +156,37 @@ function todayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+
 
 let tgt=getTodayChar(),guesses=[],over=false,sel=-1;
 
-function loadState(){
-  try{const s=JSON.parse(localStorage.getItem('bleachg25v2'));
-  if(!s||s.date!==todayStr())return;
-  guesses=s.guesses||[];over=s.over||false;
-  guesses.forEach(renderRow);updateDots();
-  if(over)showResult(s.won);}catch(e){}
+function saveState(won){
+  try{
+    localStorage.setItem('bleachg25v2',JSON.stringify({
+      date:todayStr(),
+      guesses:guesses.map(x=>({m:{n:x.m.n}})),
+      over,
+      won
+    }));
+  }catch(e){}
 }
-function saveState(won){try{localStorage.setItem('bleachg25v2',JSON.stringify({date:todayStr(),guesses,over,won}));}catch(e){}}
+
+function loadState(){
+  try{
+    const old=localStorage.getItem('bleachg25');
+    if(old) localStorage.removeItem('bleachg25');
+    const s=JSON.parse(localStorage.getItem('bleachg25v2'));
+    if(!s||s.date!==todayStr())return;
+    const rehydrated=[];
+    for(const saved of (s.guesses||[])){
+      const fresh=CHARS.find(x=>x.n===saved.m.n);
+      if(!fresh) continue;
+      const f=cmp(fresh);
+      rehydrated.push({m:fresh,f});
+    }
+    guesses=rehydrated;
+    over=s.over||false;
+    guesses.forEach(renderRow);
+    updateDots();
+    if(over) showResult(s.won);
+  }catch(e){console.error(e);}
+}
 
 function cmp(m){
   const dd=Math.abs(m.d-tgt.d);
